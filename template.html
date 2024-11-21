@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="assets/template/images/navigation_bar/origins_logo.png" />
+        <link rel="stylesheet" href="css/template/body.css" />
+        <link rel="stylesheet" href="css/template/navigation_bar.css" />
+        <link rel="stylesheet" href="css/template/footer.css" />
+        <title>Origins Documentation | Template</title>
+    </head>
+    <body>
+        <!-- Navigation Bar -->
+        <div class="navbar">
+            <!-- Left Section of Navbar -->
+            <div class="navbar-left">
+                <img src="assets/template/images/navigation_bar/origins_logo.png" alt="Origins Logo" class="navbar-logo" />
+                <div class="navbar-item">Origins</div>
+
+                <!-- Dropdown menu for Docs -->
+                <div class="navbar-item small dropdown" style="padding-right: 10px;">
+                    Docs <span class="dropdown-arrow">&#x25BC;</span>
+                    <div class="dropdown-content">
+                        <a href="#">Data Pack</a>
+                        <a href="#">Addon</a>
+                    </div>
+                </div>
+                <div class="navbar-item small">Tutorial</div>
+                <div class="navbar-item small">Blog</div>
+            </div>
+
+            <!-- Right Section of Navbar -->
+            <div class="navbar-right">
+                <div class="search-bar" onclick="openSearchOverlay()">
+                    <img src="assets/template/images/navigation_bar/magnifying_glass.svg" alt="Search Icon" width="16" height="16" />
+                    <input type="text" placeholder="search" readonly />
+                    <span style="font-size: 14px; color: #888;">CTRL K</span> <!-- Shortcut to open the search overlay -->
+                </div>
+                <button class="icon-button">
+                    <img src="assets/template/images/navigation_bar/discord_logo.svg" alt="Discord Logo" width="24" height="24" />
+                </button>
+                <button class="icon-button">
+                    <img src="assets/template/images/navigation_bar/github_logo.svg" alt="GitHub Logo" width="24" height="24" />
+                </button>
+                <button class="icon-button moon-button" onclick="toggleDarkMode()">
+                    ☾
+                </button>
+            </div>
+        </div>
+
+        <!-- Search Overlay -->
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-container-wrapper">
+                <div class="search-container">
+                    <input type="text" placeholder="Type your search..." id="searchInput" />
+                    <button class="clear-btn" onclick="clearSearchInput()">&times;</button>
+                </div>
+                <button class="close-btn" onclick="closeSearchOverlay()"></button>
+            </div>
+            <div class="recent-searches" id="recentSearches">NO RECENT SEARCHES</div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; <span id="year"></span> Overgrown. This website is <a href="https://github.com/OriginsRepo" style="color: #007bff; text-decoration: none;">open source</a> released under the MIT license.</p>
+        </footer>
+        <script src="js/template/search-overlay.js"></script> <!-- Handles the search overlay functionality -->
+        <script src="js/template/dark-day-mode-toggle.js"></script> <!-- Handles dark mode toggle functionality -->
+    </body>
+</html>

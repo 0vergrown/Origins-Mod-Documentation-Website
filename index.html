@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="assets/template/images/navigation_bar/origins_logo.png" />
+        <link rel="stylesheet" href="css/template/body.css" />
+        <link rel="stylesheet" href="css/template/navigation_bar.css" />
+        <link rel="stylesheet" href="css/index/hero_section.css" />
+        <link rel="stylesheet" href="css/index/about_section.css" />
+        <link rel="stylesheet" href="css/index/used_in_many_videos_section.css" />
+        <link rel="stylesheet" href="css/template/footer.css" />
+        <title>Origins Documentation | Home</title>
+    </head>
+    <body>
+        <!-- Navigation Bar -->
+        <div class="navbar">
+            <!-- Left Section of Navbar -->
+            <div class="navbar-left">
+                <img src="assets/template/images/navigation_bar/origins_logo.png" alt="Origins Logo" class="navbar-logo" />
+                <div class="navbar-item">Origins</div>
+
+                <!-- Dropdown menu for Docs -->
+                <div class="navbar-item small dropdown" style="padding-right: 10px;">
+                    Docs <span class="dropdown-arrow">▼</span>
+                    <div class="dropdown-content">
+                        <a href="#">Data Pack</a>
+                        <a href="#">Addon</a>
+                    </div>
+                </div>
+                <div class="navbar-item small">Tutorial</div>
+                <div class="navbar-item small">Blog</div>
+            </div>
+
+            <!-- Right Section of Navbar -->
+            <div class="navbar-right">
+                <div class="search-bar" onclick="openSearchOverlay()">
+                    <img src="assets/template/images/navigation_bar/magnifying_glass.svg" alt="Search Icon" width="16" height="16" />
+                    <input type="text" placeholder="search" readonly />
+                    <span style="font-size: 14px; color: #888;">CTRL K</span>
+                    <!-- Shortcut to open the search overlay -->
+                </div>
+                <button class="icon-button">
+                    <img src="assets/template/images/navigation_bar/discord_logo.svg" alt="Discord Logo" width="24" height="24" />
+                </button>
+                <button class="icon-button">
+                    <img src="assets/template/images/navigation_bar/github_logo.svg" alt="GitHub Logo" width="24" height="24" />
+                </button>
+                <button class="icon-button moon-button" onclick="toggleDarkMode()">
+                    ☾
+                </button>
+            </div>
+        </div>
+        <!-- Search Overlay -->
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-container-wrapper">
+                <div class="search-container">
+                    <input type="text" placeholder="Type your search..." id="searchInput" />
+                    <button class="clear-btn" onclick="clearSearchInput()">x</button>
+                </div>
+                <button class="close-btn" onclick="closeSearchOverlay()"></button>
+            </div>
+            <div class="recent-searches" id="recentSearches">NO RECENT SEARCHES</div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="vignette"></div>
+            <div class="hero-text">
+                <h1>Origins Mod Documentation</h1>
+                <a href="#">GET STARTED</a>
+            </div>
+            <div class="hero-images">
+                <img src="assets/index/hero_section/grand_jester_origin_preview.png" alt="Hero Image 1" class="active" />
+                <img src="assets/index/hero_section/nepeta_origin_preview.png" alt="Hero Image 2" />
+                <img src="assets/index/hero_section/gabriel_ultrakill_origin_preview.png" alt="Hero Image 3" />
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="about-section">
+            <div class="about-text">
+                <div class="pronunciation">
+                    <h1>/&#712;ôrəj(ə)n/</h1>
+                    <span class="tag">noun</span><span class="definition">person's social background or ancestry</span>
+                </div>
+                <p class="about-description">
+                    Lorem ipsum odor amet, consectetuer adipiscing elit. Orci tortor torquent morbi hendrerit, convallis rutrum fermentum dolor. Luctus eu morbi porttitor litora in nunc potenti? Litora facilisi mus morbi fusce semper
+                    parturient.
+                </p>
+                <p class="about-description">
+                    Lorem ipsum odor amet, consectetuer adipiscing elit. Orci tortor torquent morbi hendrerit, convallis rutrum fermentum dolor.
+                </p>
+            </div>
+            <div class="about-image">
+                <img src="assets/index/about/sukuna_origin_preview.png" alt="About Image" />
+            </div>
+        </div>
+
+        <!-- Used In Many Videos Section -->
+        <div class="videos-section">
+            <div class="video-title">
+                <div class="line"></div>
+                <h2>Used In Many Videos</h2>
+                <div class="line"></div>
+            </div>
+            <div id="video-container">
+                <iframe id="random-video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; <span id="year"></span> Overgrown. This website is <a href="https://github.com/OriginsRepo" style="color: #007bff; text-decoration: none;">open source</a> released under the MIT license.</p>
+        </footer>
+
+        <script src="js/template/search-overlay.js"></script>
+        <!-- Handles the search overlay functionality -->
+        <script src="js/template/dark-day-mode-toggle.js"></script>
+        <!-- Handles dark mode toggle functionality -->
+        <script src="js/index/hero_section_image_rotation.js"></script>
+        <!-- Handles random video functionality -->
+        <script src="js/index/used_in_many_videos_section_random_youtube_video.js"></script>
+    </body>
+</html>

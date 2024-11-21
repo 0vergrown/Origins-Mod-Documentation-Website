@@ -1,0 +1,63 @@
+.about-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 63vh;
+}
+
+.about-text {
+    flex: 1;
+    max-width: 550px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    right: -175px;
+}
+
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-image img {
+    width: 53%;
+    height: 53%;
+    border-radius: 8px;
+    margin-right: 50px;
+    position: relative;
+    left: 90px;
+}
+
+.pronunciation h1 {
+    font-size: 2.6em;
+    color: #d43008;
+    margin: 0;
+    display: inline;
+}
+
+.tag {
+    font-size: 16px;
+    border-radius: 4px;
+    background-color: #262626;
+    color: #ffffff;
+    padding: 2px 6px;
+    margin-left: 8px;
+    font-family: 'Fira Sans', sans-serif;
+    text-transform: uppercase;
+    display: inline;
+}
+
+.definition {
+    margin-left: 8px;
+    font-size: 16px;
+    display: inline;
+}
+
+.about-description {
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 1.5;
+}

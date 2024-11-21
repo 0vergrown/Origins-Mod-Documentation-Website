@@ -1,0 +1,264 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+body.dark-mode .navbar {
+    background-color: #333;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+.navbar-logo {
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+}
+.navbar-item {
+    margin-right: 15px;
+    font-size: 18px;
+}
+.navbar-item.small {
+    font-size: 16px;
+    color: #666;
+}
+body.dark-mode .navbar-item.small {
+    color: #ccc;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 120px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 8px 0;
+}
+.dropdown-content a {
+    color: #333; /* Sets link color */
+    padding: 8px 12px; /* Proper padding */
+    text-decoration: none; /* Remove underline */
+    display: block;
+    font-size: 16px; /* Consistent font size */
+}
+.dropdown-content a:visited {
+    color: #333; /* Make visited links look like normal links */
+}
+.dropdown-content a:hover {
+    background-color: #e0e0e0; /* Optional: Add a hover effect for better UX */
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+body.dark-mode .dropdown-content {
+    background-color: #444;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+body.dark-mode .dropdown-content a {
+    color: #ccc;
+}
+body.dark-mode .dropdown-content a:hover {
+    background-color: #555; /* Optional: Hover effect for dark mode */
+}
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-sizing: border-box;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 20px;
+    padding: 5px 10px;
+    color: #333;
+    box-sizing: border-box;
+    width: 200px; /* Increased width for a longer appearance */
+    overflow: hidden; /* Ensure no content overflows */
+}
+body.dark-mode .search-bar {
+    background-color: #444;
+    color: white;
+    width: 200px;
+}
+.search-bar input {
+    flex: 1; /* Use flex to ensure the input takes up remaining space */
+    border: none;
+    outline: none;
+    margin-left: 10px;
+    font-size: 14px;
+    width: 0; /* Allow flex to control the width */
+    background-color: inherit;
+    color: inherit;
+}
+.search-bar input::placeholder {
+    color: #888;
+}
+body.dark-mode .search-bar input::placeholder {
+    color: #ccc;
+}
+
+/* Overlay styles */
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    flex-direction: column;
+}
+.search-overlay .search-container-wrapper {
+    display: flex;
+    align-items: center;
+}
+.search-overlay .search-container {
+    background: #fff;
+    border-radius: 20px 0 0 0; /* Only the top-left corner is rounded */
+    padding: 20px;
+    width: 500px;
+    max-width: 90%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: box-shadow 0.3s ease;
+}
+.search-overlay input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    transition: border 0.3s ease;
+}
+.search-overlay input[type="text"]:focus {
+    box-shadow: 0 0 5px 2px #ff8400;
+}
+.search-overlay .clear-btn {
+    background: transparent;
+    border: none;
+    color: #888;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.search-overlay .close-btn {
+    background: #fff;
+    border: 1px solid #ccc;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 20px;
+    border-radius: 0 10px 0 0;
+    height: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-overlay .close-btn:before {
+    content: "ESC";
+    font-weight: bold;
+}
+
+body.dark-mode .search-overlay {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+body.dark-mode .search-overlay .search-container {
+    background: #333;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .search-overlay input[type="text"] {
+    background: #444;
+    color: #ccc;
+}
+
+body.dark-mode .search-overlay input[type="text"]::placeholder {
+    color: #888;
+}
+
+body.dark-mode .search-overlay .clear-btn {
+    color: #ccc;
+}
+
+body.dark-mode .search-overlay .close-btn {
+    background: #333;
+    border: 1px solid #555;
+    color: #ccc;
+}
+
+body.dark-mode .recent-searches {
+    background: #333;
+    color: #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+.recent-searches {
+    background: #fff;
+    border-radius: 0 0 10px 10px;
+    padding: 15px;
+    width: 584px;
+    max-width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    color: #888;
+    align-self: center;
+}
+.search-bar span {
+    font-size: 12px;
+    color: #888;
+    margin-left: 5px; /* Slight space between input and text */
+    line-height: 1; /* Keep consistent line height */
+    white-space: nowrap; /* Prevent wrapping */
+}
+body.dark-mode .search-bar span {
+    color: #ccc;
+}
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+}
+body.dark-mode .icon-button {
+    color: white;
+}
+.moon-button,
+.sun-button {
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
