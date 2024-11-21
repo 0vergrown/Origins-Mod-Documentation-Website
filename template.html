@@ -19,7 +19,7 @@
 
                 <!-- Dropdown menu for Docs -->
                 <div class="navbar-item small dropdown" style="padding-right: 10px;">
-                    Docs <span class="dropdown-arrow">&#x25BC;</span>
+                    <a href="docs.html" class="docs-text">Docs</a> <span class="dropdown-arrow">▼</span>
                     <div class="dropdown-content">
                         <a href="#">Data Pack</a>
                         <a href="#">Addon</a>
@@ -34,7 +34,8 @@
                 <div class="search-bar" onclick="openSearchOverlay()">
                     <img src="assets/template/images/navigation_bar/magnifying_glass.svg" alt="Search Icon" width="16" height="16" />
                     <input type="text" placeholder="search" readonly />
-                    <span style="font-size: 14px; color: #888;">CTRL K</span> <!-- Shortcut to open the search overlay -->
+                    <span style="font-size: 14px; color: #888;">CTRL K</span>
+                    <!-- Shortcut to open the search overlay -->
                 </div>
                 <button class="icon-button">
                     <img src="assets/template/images/navigation_bar/discord_logo.svg" alt="Discord Logo" width="24" height="24" />
@@ -43,17 +44,16 @@
                     <img src="assets/template/images/navigation_bar/github_logo.svg" alt="GitHub Logo" width="24" height="24" />
                 </button>
                 <button class="icon-button moon-button" onclick="toggleDarkMode()">
-                    ☾
+                    <img src="assets/template/images/navigation_bar/moon.svg" alt="Moon Icon" width="24" height="24" />
                 </button>
             </div>
         </div>
-
         <!-- Search Overlay -->
         <div class="search-overlay" id="searchOverlay">
             <div class="search-container-wrapper">
                 <div class="search-container">
                     <input type="text" placeholder="Type your search..." id="searchInput" />
-                    <button class="clear-btn" onclick="clearSearchInput()">&times;</button>
+                    <button class="clear-btn" onclick="clearSearchInput()">x</button>
                 </div>
                 <button class="close-btn" onclick="closeSearchOverlay()"></button>
             </div>
@@ -64,7 +64,10 @@
         <footer class="footer">
             <p>&copy; <span id="year"></span> Overgrown. This website is <a href="https://github.com/OriginsRepo" style="color: #007bff; text-decoration: none;">open source</a> released under the MIT license.</p>
         </footer>
-        <script src="js/template/search-overlay.js"></script> <!-- Handles the search overlay functionality -->
-        <script src="js/template/dark-day-mode-toggle.js"></script> <!-- Handles dark mode toggle functionality -->
+        
+        <!-- Handles the search overlay functionality -->
+        <script src="js/template/search-overlay.js"></script>
+        <!-- Handles dark mode toggle functionality -->
+        <script src="js/template/dark-day-mode-toggle.js"></script>
     </body>
 </html>

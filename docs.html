@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="assets/template/images/navigation_bar/origins_logo.png" />
+    <link rel="stylesheet" href="css/template/body.css" />
+    <link rel="stylesheet" href="css/template/navigation_bar.css" />
+    <link rel="stylesheet" href="css/template/footer.css" />
+    <link rel="stylesheet" href="css/template/docs.css" />
+    <title>Origins Documentation | Docs</title>
+    <style>
+      .documentation-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+      }
+      .documentation-container h1,
+      .documentation-container p {
+        text-align: left;
+        max-width: 600px;
+      }
+      .doc-option {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background: #ffffff;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 8px;
+        transition: box-shadow 0.3s ease;
+        width: 100%;
+        max-width: 600px;
+        position: relative;
+      }
+      .doc-option:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .doc-option h2 {
+        margin: 0 0 10px 0;
+      }
+      .doc-option:hover h2 {
+        text-decoration: underline;
+      }
+      .doc-option p {
+        max-width: 500px;
+      }
+      .arrow-link {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        color: #e63946;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+      }
+      .doc-option:hover .arrow-link {
+        transform: translateX(5px);
+      }
+    </style>
+  </head>
+  <body>
+         <!-- Navigation Bar -->
+         <div class="navbar">
+            <!-- Left Section of Navbar -->
+            <div class="navbar-left">
+                <img src="assets/template/images/navigation_bar/origins_logo.png" alt="Origins Logo" class="navbar-logo" />
+                <div class="navbar-item">Origins</div>
+
+                <!-- Dropdown menu for Docs -->
+                <div class="navbar-item small dropdown" style="padding-right: 10px;">
+                    <a href="docs.html" class="docs-text">Docs</a> <span class="dropdown-arrow">▼</span>
+                    <div class="dropdown-content">
+                        <a href="#">Data Pack</a>
+                        <a href="#">Addon</a>
+                    </div>
+                </div>
+                <div class="navbar-item small">Tutorial</div>
+                <div class="navbar-item small">Blog</div>
+            </div>
+
+            <!-- Right Section of Navbar -->
+            <div class="navbar-right">
+                <div class="search-bar" onclick="openSearchOverlay()">
+                    <img src="assets/template/images/navigation_bar/magnifying_glass.svg" alt="Search Icon" width="16" height="16" />
+                    <input type="text" placeholder="search" readonly />
+                    <span style="font-size: 14px; color: #888;">CTRL K</span>
+                    <!-- Shortcut to open the search overlay -->
+                </div>
+                <button class="icon-button">
+                    <img src="assets/template/images/navigation_bar/discord_logo.svg" alt="Discord Logo" width="24" height="24" />
+                </button>
+                <button class="icon-button">
+                    <img src="assets/template/images/navigation_bar/github_logo.svg" alt="GitHub Logo" width="24" height="24" />
+                </button>
+                <button class="icon-button moon-button" onclick="toggleDarkMode()">
+                    <img src="assets/template/images/navigation_bar/moon.svg" alt="Moon Icon" width="24" height="24" />
+                </button>
+            </div>
+        </div>
+        <!-- Search Overlay -->
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-container-wrapper">
+                <div class="search-container">
+                    <input type="text" placeholder="Type your search..." id="searchInput" />
+                    <button class="clear-btn" onclick="clearSearchInput()">x</button>
+                </div>
+                <button class="close-btn" onclick="closeSearchOverlay()"></button>
+            </div>
+            <div class="recent-searches" id="recentSearches">NO RECENT SEARCHES</div>
+        </div>
+
+    <!-- Documentation Content -->
+    <div class="documentation-container">
+      <h1>Documentation</h1>
+      <p>
+        Head to the <a href="#" class="highlight">Data Pack</a> or <a href="#" class="highlight">Addon</a> reference docs, or choose your adventure:
+      </p>
+      <div class="doc-option">
+        <h2>I'm brand new here</h2>
+        <p>We recommend starting with reading the documentation, which will teach you how to use Origins.</p>
+        <a href="#" class="arrow-link">➞</a>
+      </div>
+      <div class="doc-option">
+        <h2>I'm migrating x version to x version</h2>
+        <p>If you're already experienced with an older version of Origins, the migration guide will bring you up to speed on the changes in Origins.</p>
+        <a href="#" class="arrow-link">➞</a>
+      </div>
+      <div class="doc-option">
+        <h2>I don't like to read</h2>
+        <p>Head over to the video section to see tutorials made by community members.</p>
+        <a href="#" class="arrow-link">➞</a>
+      </div>
+      <div class="doc-option">
+        <h2>Help! I'm stuck</h2>
+        <p>Join our Discord server where you can hang out with others and ask them questions. It's like an LLM but with people.</p>
+        <a href="#" class="external-link">🔗</a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; <span id="year"></span> Overgrown. This website is <a href="https://github.com/OriginsRepo" style="color: #007bff; text-decoration: none;">open source</a> released under the MIT license.</p>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/template/search-overlay.js"></script>
+    <script src="js/template/dark-day-mode-toggle.js"></script>
+  </body>
+</html>
