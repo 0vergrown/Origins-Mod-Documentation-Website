@@ -1,0 +1,80 @@
+.documentation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Keeps the section itself centered */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.documentation-container h1 {
+    text-align: left;
+    max-width: 600px; /* Matches the width of the doc-option elements */
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 20px; /* Adds space above the "Documentation" text */
+    padding-bottom: 15px; /* Adds space below the "Documentation" text */
+    font-size: 50px; /* Base font size */
+}
+.documentation-container p {
+    text-align: left;
+    max-width: 600px; /* Matches the width of the doc-option elements */
+    width: 100%;
+    margin: 0 auto;
+    font-size: 20px; /* Slightly smaller than h2 but still legible */
+}
+.doc-option {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns all child elements (h2, p) to the left */
+    background: #ffffff;
+    padding: 25px; /* Larger padding for better spacing */
+    margin: 30px 0; /* Increased margin between doc-option items */
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+}
+.doc-option:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Slightly larger hover shadow */
+}
+.doc-option h2 {
+    margin: 0 0 15px 0; /* Increased spacing below heading */
+    text-align: left; /* Ensure alignment for heading */
+    width: 100%;
+    font-size: 32px; /* Scaled-down size from h1 */
+}
+.doc-option:hover h2 {
+    text-decoration: underline;
+}
+.doc-option p {
+    margin: 0; /* Remove any default margins */
+    text-align: left; /* Align text to the left */
+    width: 75%; /* Take the full width within the doc-option */
+    font-size: 18px; /* Smaller size for paragraph text */
+    line-height: 1.6; /* Better line height for readability */
+}
+.arrow-link {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 28px; /* Larger arrow size to match scaled elements */
+    color: #e63946;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+.doc-option:hover .arrow-link {
+    transform: translateX(6px);
+}
+.external-link {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 28px; /* Larger arrow size to match scaled elements */
+    color: #e63946;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+.doc-option:hover .external-link {
+    transform: translateX(6px);
+}
