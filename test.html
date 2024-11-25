@@ -1,314 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/x-icon" href="assets/template/images/navigation_bar/origins_logo.png" />
-        <link rel="stylesheet" href="css/template/body.css" />
-        <link rel="stylesheet" href="css/template/navigation_bar.css" />
-        <link rel="stylesheet" href="css/template/footer.css" />
-        <link rel="stylesheet" href="css/template/sidebar.css" />
-        <link rel="stylesheet" href="css/template/content.css" />
-        <title>Origins Documentation | Template</title>
-        <style>
-            .main-content {
-                display: flex;
-                margin-top: 20px;
-            }
-            .sidebar {
-                width: 20%;
-                background-color: #f8f9fa;
-                padding: 15px;
-                border-right: 1px solid #ddd;
-            }
-            .content {
-                width: 60%;
-                padding: 15px;
-            }
-            .right-sidebar {
-                width: 20%;
-                padding: 15px;
-                border-left: 1px solid #ddd;
-            }
-            .sidebar ul {
-                list-style: none;
-                padding: 0;
-            }
-            .sidebar li {
-                margin-bottom: 10px;
-                cursor: pointer;
-            }
-            .sidebar li ul {
-                list-style: none;
-                padding-left: 20px;
-                display: none;
-            }
-        </style>
-    </head>
-    <body>
-        <!-- Navigation Bar -->
-        <div class="navbar">
-            <!-- Left Section of Navbar -->
-            <div class="navbar-left">
-                <a href="index.html">
-                    <img src="assets/template/images/navigation_bar/origins_logo.png" alt="Origins Logo" class="navbar-logo" />
-                </a>
-                <a href="index.html" class="navbar-item">Origins</a>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="assets/template/images/navigation_bar/origins_logo.png" />
+    <link rel="stylesheet" href="css/template/body.css" />
+    <link rel="stylesheet" href="css/template/navigation_bar.css" />
+    <link rel="stylesheet" href="css/template/footer.css" />
+    <link rel="stylesheet" href="css/template/docs_viewer.css" />
+    <title>Origins Documentation | Docs Viewer</title>
+    <style>
+        .main-container {
+            display: flex;
+            flex-direction: row;
+            height: calc(100vh - 100px);
+        }
+        .left-sidebar, .right-sidebar {
+            width: 20%;
+            background-color: #f4f4f4;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .markdown-viewer {
+            width: 60%;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .markdown-viewer h1, .markdown-viewer h2, .markdown-viewer h3, .markdown-viewer h4, .markdown-viewer h5, .markdown-viewer h6 {
+            color: #333;
+            margin-top: 1em;
+        }
+        .markdown-viewer p {
+            line-height: 1.6;
+            color: #555;
+        }
+        .markdown-viewer pre {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .markdown-viewer code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        .markdown-viewer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .markdown-viewer a:hover {
+            text-decoration: underline;
+        }
+        .sidebar h2 {
+            margin-top: 0;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .sidebar ul li {
+            cursor: pointer;
+            padding: 5px 0;
+        }
+        .sidebar ul li:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <!-- Left Section of Navbar -->
+        <div class="navbar-left">
+            <a href="index.html">
+                <img src="assets/template/images/navigation_bar/origins_logo.png" alt="Origins Logo" class="navbar-logo" />
+            </a>
+            <a href="index.html" class="navbar-item">Origins</a>
 
-                <!-- Dropdown menu for Docs -->
-                <div class="navbar-item small dropdown" style="padding-right: 10px;">
-                    <a href="docs.html" class="docs-text">Docs</a> <span class="dropdown-arrow">▼</span>
-                    <div class="dropdown-content">
-                        <a href="#">Data Pack</a>
-                        <a href="#">Addon</a>
-                    </div>
+            <!-- Dropdown menu for Docs -->
+            <div class="navbar-item small dropdown" style="padding-right: 10px;">
+                <a href="docs.html" class="docs-text">Docs</a> <span class="dropdown-arrow">&#x25BC;</span>
+                <div class="dropdown-content">
+                    <a href="#">Data Pack</a>
+                    <a href="#">Addon</a>
                 </div>
-                <div class="navbar-item small">Tutorial</div>
-                <div class="navbar-item small">Blog</div>
             </div>
-
-            <!-- Right Section of Navbar -->
-            <div class="navbar-right">
-                <div class="search-bar" onclick="openSearchOverlay()">
-                    <img src="assets/template/images/navigation_bar/magnifying_glass.svg" alt="Search Icon" width="16" height="16" />
-                    <input type="text" placeholder="search" readonly />
-                    <span style="font-size: 14px; color: #888;">CTRL K</span>
-                    <!-- Shortcut to open the search overlay -->
-                </div>
-                <button class="icon-button">
-                    <img src="assets/template/images/navigation_bar/discord_logo.svg" alt="Discord Logo" width="24" height="24" />
-                </button>
-                <button class="icon-button">
-                    <img src="assets/template/images/navigation_bar/github_logo.svg" alt="GitHub Logo" width="24" height="24" />
-                </button>
-                <button class="icon-button moon-button" onclick="toggleDarkMode()">
-                    <img src="assets/template/images/navigation_bar/moon.svg" alt="Moon Icon" width="24" height="24" />
-                </button>
-            </div>
-        </div>
-        <!-- Search Overlay -->
-        <div class="search-overlay" id="searchOverlay">
-            <div class="search-container-wrapper">
-                <div class="search-container">
-                    <input type="text" placeholder="Type your search..." id="searchInput" />
-                    <button class="clear-btn" onclick="clearSearchInput()">x</button>
-                </div>
-                <button class="close-btn" onclick="closeSearchOverlay()"></button>
-            </div>
-            <div class="recent-searches" id="recentSearches">NO RECENT SEARCHES</div>
+            <div class="navbar-item small">Tutorial</div>
+            <div class="navbar-item small">Blog</div>
         </div>
 
-        <!-- Main Content Area -->
-        <div class="main-content">
-            <!-- Sidebar -->
-            <div class="sidebar" id="sidebar"></div>
-            <!-- Documentation Content -->
-            <div class="content" id="content"></div>
-            <!-- Right Sidebar with Quick Links -->
-            <div class="right-sidebar" id="rightSidebar"></div>
+        <!-- Right Section of Navbar -->
+        <div class="navbar-right">
+            <div class="search-bar" onclick="openSearchOverlay()">
+                <img src="assets/template/images/navigation_bar/magnifying_glass.svg" alt="Search Icon" width="16" height="16" />
+                <input type="text" placeholder="search" readonly />
+                <span style="font-size: 14px; color: #888;">CTRL K</span>
+            </div>
+            <button class="icon-button">
+                <img src="assets/template/images/navigation_bar/discord_logo.svg" alt="Discord Logo" width="24" height="24" />
+            </button>
+            <button class="icon-button">
+                <img src="assets/template/images/navigation_bar/github_logo.svg" alt="GitHub Logo" width="24" height="24" />
+            </button>
+            <button class="icon-button moon-button" onclick="toggleDarkMode()">
+                <img src="assets/template/images/navigation_bar/moon.svg" alt="Moon Icon" width="24" height="24" />
+            </button>
+        </div>
+    </div>
+    
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container-wrapper">
+            <div class="search-container">
+                <input type="text" placeholder="Type your search..." id="searchInput" />
+                <button class="clear-btn" onclick="clearSearchInput()">x</button>
+            </div>
+            <button class="close-btn" onclick="closeSearchOverlay()"></button>
+        </div>
+        <div class="recent-searches" id="recentSearches">NO RECENT SEARCHES</div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar for Navigation -->
+        <div class="sidebar left-sidebar" id="fileExplorer">
+            <h2>Documentation</h2>
+            <ul id="sidebar-menu">
+                <!-- Sidebar items will be populated here by JavaScript -->
+            </ul>
         </div>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <p>&copy; <span id="year"></span> Overgrown. This website is <a href="https://github.com/0vergrown/Origins-Mod-Documentation-Website" style="color: #007bff; text-decoration: none;">open source</a> released under the MIT license.</p>
-        </footer>
+        <!-- Markdown Viewer -->
+        <div class="markdown-viewer" id="markdownContent">
+            <h2>Select a file from the sidebar</h2>
+        </div>
 
-        <!-- Handles the search overlay functionality -->
-        <script src="js/template/search-overlay.js"></script>
-        <!-- Handles dark mode toggle functionality -->
-        <script src="js/template/dark-day-mode-toggle.js"></script>
-        <!-- Sidebar JS to populate with documentation items -->
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const sidebar = document.getElementById("sidebar");
-                const documentation = {
-                    "Badge JSON": [],
-                    "Data Pack Guides": [
-                        "Defining an Origin",
-                        "Defining a Power",
-                        "Origin conditions in layers"
+        <!-- Sidebar for Headers -->
+        <div class="sidebar right-sidebar" id="headerExplorer">
+            <h2>Headers</h2>
+            <ul id="headers-menu">
+                <!-- Headers will be populated here by JavaScript -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; <span id="year"></span> Overgrown. This website is <a href="https://github.com/0vergrown/Origins-Mod-Documentation-Website" style="color: #007bff; text-decoration: none;">open source</a> released under the MIT license.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/template/search-overlay.js"></script>
+    <script src="js/template/dark-day-mode-toggle.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebarMenu = document.getElementById('sidebar-menu');
+            const markdownContent = document.getElementById('markdownContent');
+            const headersMenu = document.getElementById('headers-menu');
+
+            function createSidebar() {
+                const fileStructure = {
+                    'datapack_guides': [
+                        'define_origin.md',
+                        'define_power.md',
+                        'origin_conditions_in_layers.md'
                     ],
-                    "General Types": [
-                        "Badge Types",
-                        "Data Types",
-                        "Power Types"
+                    'json': [
+                        'badge.md',
+                        'global_power_set.md',
+                        'origin.md',
+                        'origin_layer.md',
+                        'power.md'
                     ],
-                    "Action Types": [
-                        "Bi-entity Action Types",
-                        "Block Action Types",
-                        "Entity Action Types",
-                        "Item Action Types",
-                        "Meta Action Types"
-                    ],
-                    "Condition Types": [
-                        "Bi-entity Condition Types",
-                        "Biome Condition Types",
-                        "Block Condition Types",
-                        "Damage Condition Types",
-                        "Entity Condition Types",
-                        "Fluid Condition Types",
-                        "Item Condition Types",
-                        "Meta Condition Types"
-                    ],
-                    "Miscellaneous": [
-                        "Advancement Triggers",
-                        "Base Contents",
-                        "Commands",
-                        "Item Modifiers",
-                        "Items",
-                        "Predicates"
-                    ],
-                    "Extras": [
-                        "Biome Categories",
-                        "Damage Source Names",
-                        "Feature Renderers",
-                        "Keybindings",
-                        "Positioned Item Stack Slots",
-                        "Sprites",
-                        "Value Modifying Power Classes"
-                    ],
-                    "Power Types": [
-                        "Attribute Modify Transfer",
-                        "Attribute",
-                        "Burn",
-                        "Climbing",
-                        "Conditioned Attribute",
-                        "Conditioned Restrict Armor",
-                        "Cooldown",
-                        "Creative Flight",
-                        "Damage Over Time",
-                        "Disable Regen",
-                        "Edible Item",
-                        "Effect Immunity",
-                        "Elytra Flight",
-                        "Entity Glow",
-                        "Entity Group",
-                        "Entity Set",
-                        "Exhaust",
-                        "Fire Immunity",
-                        "Fire Projectile",
-                        "Freeze",
-                        "Game Event Listener",
-                        "Grounded",
-                        "Ignore Water",
-                        "Inventory",
-                        "Invisibility",
-                        "Invulnerability",
-                        "Item On Item",
-                        "Keep Inventory",
-                        "Launch",
-                        "Lava Vision",
-                        "Model Color",
-                        "Multiple",
-                        "Night Vision",
-                        "Overlay",
-                        "Particle",
-                        "Phasing",
-                        "Recipe",
-                        "Replace Loot Table",
-                        "Resource",
-                        "Restrict Armor",
-                        "Self Glow",
-                        "Shader",
-                        "Shaking",
-                        "Simple",
-                        "Stacking Status Effect",
-                        "Starting Equipment",
-                        "Status Bar Texture",
-                        "Swimming",
-                        "Toggle Night Vision",
-                        "Toggle",
-                        "Tooltip",
-                        "Walk On Fluid",
-                        "Action On Being Used",
-                        "Action On Block Break",
-                        "Action On Block Place",
-                        "Action On Block Use",
-                        "Action On Callback",
-                        "Action On Death",
-                        "Action On Entity Use",
-                        "Action On Hit",
-                        "Action On Item Pickup",
-                        "Action On Item Use",
-                        "Action On Land",
-                        "Action On Wake Up",
-                        "Action Over Time",
-                        "Action When Damage Taken",
-                        "Action When Hit",
-                        "Active Self",
-                        "Attacker Action When Hit",
-                        "Self Action On Hit",
-                        "Self Action On Kill",
-                        "Self Action When Hit",
-                        "Target Action On Hit",
-                        "Modify Air Speed",
-                        "Modify Attribute",
-                        "Modify Block Render",
-                        "Modify Break Speed",
-                        "Modify Camera Submersion",
-                        "Modify Crafting",
-                        "Modify Damage Dealt",
-                        "Modify Damage Taken",
-                        "Modify Enchantment Level",
-                        "Modify Exhaustion",
-                        "Modify Falling",
-                        "Modify Fluid Render",
-                        "Modify Food",
-                        "Modify Grindstone",
-                        "Modify Harvest",
-                        "Modify Healing",
-                        "Modify Insomnia Ticks",
-                        "Modify Jump",
-                        "Modify Lava Speed",
-                        "Modify Player Spawn",
-                        "Modify Projectile Damage",
-                        "Modify Slipperiness",
-                        "Modify Status Effect Amplifier",
-                        "Modify Status Effect Duration",
-                        "Modify Swim Speed",
-                        "Modify Velocity",
-                        "Modify XP Gain",
-                        "Prevent Being Used",
-                        "Prevent Block Place",
-                        "Prevent Block Selection",
-                        "Prevent Block Use",
-                        "Prevent Death",
-                        "Prevent Elytra Flight",
-                        "Prevent Entity Collision",
-                        "Prevent Entity Render",
-                        "Prevent Entity Use",
-                        "Prevent Feature Render",
-                        "Prevent Game Event",
-                        "Prevent Item Pickup",
-                        "Prevent Item Use",
-                        "Prevent Sleep",
-                        "Prevent Sprinting"
+                    'general_types': [
+                        'badge_types.md',
+                        'data_types.md',
+                        'power_types.md'
                     ]
                 };
 
-                let sidebarContent = "<ul>";
-                for (const category in documentation) {
-                    sidebarContent += `<li onclick="toggleSubItems(this)">${category}<ul>`;
-                    documentation[category].forEach(item => {
-                        sidebarContent += `<li onclick="loadContent('${item}')">${item}</li>`;
+                for (const folder in fileStructure) {
+                    const folderItem = document.createElement('li');
+                    folderItem.textContent = folder;
+                    sidebarMenu.appendChild(folderItem);
+
+                    const sublist = document.createElement('ul');
+                    fileStructure[folder].forEach(file => {
+                        const fileItem = document.createElement('li');
+                        fileItem.textContent = file;
+                        fileItem.onclick = () => loadMarkdown(folder, file);
+                        sublist.appendChild(fileItem);
                     });
-                    sidebarContent += "</ul></li>";
-                }
-                sidebarContent += "</ul>";
-                sidebar.innerHTML = sidebarContent;
-            });
-
-            function toggleSubItems(element) {
-                const subItems = element.querySelector("ul");
-                if (subItems) {
-                    subItems.style.display = subItems.style.display === "block" ? "none" : "block";
+                    sidebarMenu.appendChild(sublist);
                 }
             }
 
-            function loadContent(title) {
-                const content = document.getElementById("content");
-                content.innerHTML = `<h1>${title}</h1><p>Content for ${title} will go here.</p>`;
+            async function loadMarkdown(folder, fileName) {
+                try {
+                    const response = await fetch(`docs/${folder}/${fileName}`);
+                    if (!response.ok) {
+                        throw new Error('Failed to load markdown file');
+                    }
+                    const markdownText = await response.text();
+                    markdownContent.innerHTML = marked.parse(markdownText);
+                    populateHeaders(markdownText);
+                } catch (error) {
+                    console.error('Error loading markdown:', error);
+                    markdownContent.innerHTML = '<p>Failed to load content. Please try again later.</p>';
+                }
             }
-        </script>
-    </body>
+
+            function populateHeaders(markdownText) {
+                headersMenu.innerHTML = '';
+                const lines = markdownText.split('\n');
+                lines.forEach(line => {
+                    if (line.startsWith('#')) {
+                        const headerItem = document.createElement('li');
+                        headerItem.textContent = line.replace(/^#+\s*/, '');
+                        headersMenu.appendChild(headerItem);
+                    }
+                });
+            }
+
+            createSidebar();
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</body>
 </html>
