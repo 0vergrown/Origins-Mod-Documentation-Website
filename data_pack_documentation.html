@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="assets/template/images/navigation_bar/origins_logo.png" />
+    <link rel="stylesheet" href="css/template/body.css" />
+    <link rel="stylesheet" href="css/template/navigation_bar.css" />
+    <link rel="stylesheet" href="css/data_pack_documentation/markdown_viewer.css" />
+    <link rel="stylesheet" href="css/template/footer.css" />
+    <title>Origins Documentation | Data Pack Docs</title>
+</head>
+<body>
+        <!-- Navigation Bar -->
+        <div class="navbar">
+            <!-- Left Section of Navbar -->
+            <div class="navbar-left">
+                <a href="index.html">
+                    <img src="assets/template/images/navigation_bar/origins_logo.png" alt="Origins Logo" class="navbar-logo" />
+                </a>
+                <a href="index.html" class="navbar-item">Origins</a>
+
+                <!-- Dropdown menu for Docs -->
+                <div class="navbar-item small dropdown" style="padding-right: 10px;">
+                    <a href="docs.html" class="docs-text">Docs</a> <span class="dropdown-arrow">▼</span>
+                    <div class="dropdown-content">
+                        <a href="data_pack_documentation.html">Data Pack</a>
+                        <a href="#">Addon</a>
+                    </div>
+                </div>
+                <div class="navbar-item small">Tutorial</div>
+                <div class="navbar-item small">Blog</div>
+            </div>
+
+            <!-- Right Section of Navbar -->
+            <div class="navbar-right">
+                <div class="search-bar" onclick="openSearchOverlay()">
+                    <img src="assets/template/images/navigation_bar/magnifying_glass.svg" alt="Search Icon" width="16" height="16" />
+                    <input type="text" placeholder="search" readonly />
+                    <span style="font-size: 14px; color: #888;">CTRL K</span>
+                    <!-- Shortcut to open the search overlay -->
+                </div>
+                <button class="icon-button">
+                    <img src="assets/template/images/navigation_bar/discord_logo.svg" alt="Discord Logo" width="24" height="24" />
+                </button>
+                <button class="icon-button">
+                    <img src="assets/template/images/navigation_bar/github_logo.svg" alt="GitHub Logo" width="24" height="24" />
+                </button>
+                <button class="icon-button moon-button" onclick="toggleDarkMode()">
+                    <img src="assets/template/images/navigation_bar/moon.svg" alt="Moon Icon" width="24" height="24" />
+                </button>
+            </div>
+        </div>
+        <!-- Search Overlay -->
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-container-wrapper">
+                <div class="search-container">
+                    <input type="text" placeholder="Type your search..." id="searchInput" />
+                    <button class="clear-btn" onclick="clearSearchInput()">x</button>
+                </div>
+                <button class="close-btn" onclick="closeSearchOverlay()"></button>
+            </div>
+            <div class="recent-searches" id="recentSearches">NO RECENT SEARCHES</div>
+        </div>
+    
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar for Navigation -->
+        <div class="sidebar left-sidebar" id="fileExplorer">
+            <ul id="sidebar-menu">
+                <!-- Sidebar items will be populated here by JavaScript -->
+            </ul>
+        </div>
+
+        <!-- Markdown Viewer -->
+        <div class="markdown-viewer" id="markdownContent">
+            <h2>Select a file from the sidebar</h2>
+        </div>
+
+        <!-- Sidebar for Headers -->
+        <div class="sidebar right-sidebar" id="headerExplorer">
+            <h2>On this page</h2>
+            <ul id="headers-menu">
+                <!-- Headers will be populated here by JavaScript -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; <span id="year"></span> Overgrown. This website is <a href="https://github.com/0vergrown/Origins-Mod-Documentation-Website" style="color: #007bff; text-decoration: none;">open source</a> released under the MIT license.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/template/search-overlay.js"></script>
+    <script src="js/template/dark-day-mode-toggle.js"></script>
+    <script src="js/data_pack_documentation/markdown_viewer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</body>
+</html>
