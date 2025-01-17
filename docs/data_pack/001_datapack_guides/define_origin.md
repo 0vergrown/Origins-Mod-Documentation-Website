@@ -1,5 +1,5 @@
 ---
-title: Defining an Origin
+title: Defining an Origin (Data Pack)
 date: 2021-05-02
 ---
 

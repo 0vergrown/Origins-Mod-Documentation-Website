@@ -1,6 +1,7 @@
 ---
 title: Power Types
 date: 2021-07-06
+tag: power types, Minecraft, mod, Fabric loader, Origin, JSON, functionality, abilities, challenges, Entity Condition Types, documentation, Attribute, Burn, Climbing, Cooldown, Creative Flight, Damage Over Time, Disable Regen, Edible Item, Effect Immunity, Elytra Flight, Entity Glow, Fire Immunity, Freeze, Game Event Listener, Invisibility, Invulnerability, Launch, Lava Vision, Night Vision, Particle, Phasing, Recipe, Resource, Restrict Armor, Self Glow, Shader, Swimming, Toggle Night Vision, Action-related, Modifying types, Preventing types
 ---
 
 # Power Types

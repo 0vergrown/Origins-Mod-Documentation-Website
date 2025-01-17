@@ -1,0 +1,104 @@
+.main-container {
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - 100px);
+}
+.left-sidebar, .right-sidebar {
+    width: 20%;
+    background-color: #f4f4f4;
+    padding: 20px;
+    overflow-y: auto;
+}
+.markdown-viewer {
+    width: 60%;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+.markdown-viewer h1, .markdown-viewer h2, .markdown-viewer h3, .markdown-viewer h4, .markdown-viewer h5, .markdown-viewer h6 {
+    color: #333;
+    margin-top: 1em;
+}
+.markdown-viewer p {
+    line-height: 1.6;
+    color: #555;
+}
+.markdown-viewer pre {
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+    position: relative;
+}
+.markdown-viewer code {
+    background-color: #f4f4f4;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+.markdown-viewer a {
+    color: #007bff;
+    text-decoration: none;
+}
+.markdown-viewer a:hover {
+    text-decoration: underline;
+}
+.markdown-viewer table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.markdown-viewer table, .markdown-viewer th, .markdown-viewer td {
+    border: 1px solid #ddd;
+}
+.markdown-viewer th, .markdown-viewer td {
+    padding: 10px;
+    text-align: left;
+}
+.markdown-viewer th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+.copy-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #eaeaea;
+    border: none;
+    border-radius: 4px;
+    padding: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.copy-button:hover {
+    background-color: #dcdcdc;
+}
+.copy-button img {
+    width: 16px;
+    height: 16px;
+}
+.sidebar ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.sidebar ul li {
+    cursor: pointer;
+    padding: 5px 0;
+}
+.sidebar ul li.folder {
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: default;
+    margin-top: 15px;
+}
+.sidebar ul li.file-item:hover {
+    text-decoration: underline;
+}
+.sidebar ul li.active {
+    color: #d43008;
+    text-decoration: underline;
+}

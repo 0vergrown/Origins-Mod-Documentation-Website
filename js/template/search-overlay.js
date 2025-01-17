@@ -3,7 +3,6 @@ const searchInput = document.getElementById("searchInput");
 const recentSearches = document.getElementById("recentSearches");
 
 let markdownFiles = []; // Array to store file paths and metadata
-let searches = [];
 
 // Open the search overlay
 function openSearchOverlay() {
@@ -21,30 +20,52 @@ function clearSearchInput() {
     searchInput.value = "";
 }
 
-// Load all markdown files and extract their metadata
-async function loadMarkdownFiles() {
-    const fileStructure = {
-        introduction: ["overview.md", "getting_started.md", "format.md"],
-        datapack_guides: ["define_origin.md", "define_power.md"],
-        json_format: ["badge.md", "origin.md", "power.md"],
-    };
+// Load file structure dynamically from JSON and extract metadata from markdown files
+async function loadFileStructure() {
+    try {
+        const response = await fetch("assets/data/documentation_file_structure.json");
+        if (!response.ok) throw new Error("Failed to fetch file structure");
 
-    for (const folder in fileStructure) {
-        for (const fileName of fileStructure[folder]) {
-            const filePath = `docs/${folder}/${fileName}`;
-            try {
-                const response = await fetch(filePath);
-                if (response.ok) {
-                    const content = await response.text();
-                    const metadata = extractMetadata(content);
-                    if (metadata) {
-                        markdownFiles.push({ filePath, metadata });
+        const structure = await response.json();
+
+        for (const [type, folders] of Object.entries(structure)) {
+            const viewer =
+                type === "data_pack"
+                    ? "data_pack_documentation.html"
+                    : "addon_documentation.html";
+
+            for (const [folder, files] of Object.entries(folders)) {
+                for (const file of files) {
+                    const filePath = `docs/${type}/${folder}/${file}`;
+
+                    try {
+                        // Fetch the markdown file to extract metadata
+                        const fileResponse = await fetch(filePath);
+                        if (!fileResponse.ok) {
+                            console.warn(`Failed to fetch file: ${filePath}`);
+                            continue;
+                        }
+
+                        const content = await fileResponse.text();
+                        const metadata = extractMetadata(content);
+
+                        // Use the extracted title or fall back to file name
+                        markdownFiles.push({
+                            filePath,
+                            metadata: {
+                                title: metadata?.title || file.replace(".md", "").replace(/_/g, " "),
+                                ...metadata, // Include other metadata if needed
+                            },
+                            viewer,
+                        });
+                    } catch (error) {
+                        console.error(`Error loading file: ${filePath}`, error);
                     }
                 }
-            } catch (error) {
-                console.error(`Failed to load file ${filePath}:`, error);
             }
         }
+    } catch (error) {
+        console.error("Error loading file structure:", error);
     }
 }
 
@@ -60,7 +81,7 @@ function extractMetadata(content) {
             .filter((line) => line.includes(":"))
             .forEach((line) => {
                 const [key, value] = line.split(":").map((item) => item.trim());
-                metadata[key] = value.replace(/"|'/g, "").split(",").map((item) => item.trim());
+                metadata[key] = value.replace(/"|'/g, "").trim();
             });
         return metadata;
     }
@@ -70,25 +91,21 @@ function extractMetadata(content) {
 // Perform search based on input
 function performSearch(query) {
     const results = markdownFiles.filter((file) =>
-        Object.values(file.metadata).some((value) =>
-            Array.isArray(value)
-                ? value.some((item) => item.toLowerCase().includes(query.toLowerCase()))
-                : value.toLowerCase().includes(query.toLowerCase())
-        )
+        file.metadata.title.toLowerCase().includes(query.toLowerCase())
     );
     displaySearchResults(results);
 }
 
-// Display search results and redirect on click
+// Display search results and handle navigation
 function displaySearchResults(results) {
     recentSearches.innerHTML = results.length
         ? results
               .map(
                   (result) =>
                       `<div>
-                          <a href="data_pack_documentation.html?file=${encodeURIComponent(
-                              result.filePath
-                          )}" class="search-result">
+                          <a href="${result.viewer}?file=${encodeURIComponent(
+                          result.filePath
+                      )}" class="search-result">
                               ${result.metadata.title}
                           </a>
                       </div>`
@@ -99,14 +116,15 @@ function displaySearchResults(results) {
 
 // Initialize search overlay functionality
 document.addEventListener("DOMContentLoaded", async () => {
-    await loadMarkdownFiles();
+    await loadFileStructure();
 
     // Handle search input changes
     searchInput.addEventListener("input", (event) => {
         const query = event.target.value.trim();
         if (query) {
-            searches.push(query);
             performSearch(query);
+        } else {
+            recentSearches.innerHTML = "No recent searches";
         }
     });
 

@@ -1,5 +1,5 @@
 ---
-title: Defining a Power
+title: Defining a Power (Data Pack)
 date: 2021-05-02
 ---
 

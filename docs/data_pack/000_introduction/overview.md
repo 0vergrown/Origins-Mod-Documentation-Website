@@ -1,9 +1,9 @@
 ---
-title: Overview
+title: Overview (Data Pack)
 date: 2025-01-16
-tag: overview, start, introduction, beginning, intro
+tag: overview, start, introduction, beginning, intro, Minecraft, mod, Fabric loader, Origin, gameplay, abilities, challenges, creative, JSON, customization, Phantom, Merling, data-driven, documentation, CurseForge, Modrinth, Discord, Data Pack
 ---
-# Overview
+# Overview (Data Pack)
 
 Origins is a Minecraft mod for the Fabric loader that enhances gameplay by allowing players to select an **Origin** at the start of the game. Each Origin provides unique abilities and challenges, encouraging creative approaches to the game.
 
