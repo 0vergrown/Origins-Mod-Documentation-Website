@@ -3,7 +3,7 @@ title: Badge JSON
 date: 2022-07-03
 ---
 
-#   Badge JSON Format
+# Badge JSON Format
 
 This is the format of a JSON [Object](../types/data_types/object.md)/file describing a badge. A badge displays an icon after the name of a power in the power list of the Origins GUI screen.
 

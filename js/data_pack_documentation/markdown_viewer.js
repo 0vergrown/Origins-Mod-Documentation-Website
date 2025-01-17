@@ -91,7 +91,14 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!response.ok) {
                 throw new Error('Failed to load markdown file');
             }
-            const markdownText = await response.text();
+            let markdownText = await response.text();
+
+            // Use a refined regex to ensure metadata is removed
+            const metadataRegex = /^---[\s\S]*?---\s*/;
+            if (metadataRegex.test(markdownText)) {
+                markdownText = markdownText.replace(metadataRegex, '');
+            }
+
             markdownContent.innerHTML = marked.parse(markdownText);
             addCopyButtonsToCodeBlocks();
             populateHeaders(markdownText);
@@ -153,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const fileItems = document.querySelectorAll('.file-item');
         fileItems.forEach(item => item.classList.remove('active'));
 
-        const activeFileItem = Array.from(fileItems).find(item => 
+        const activeFileItem = Array.from(fileItems).find(item =>
             item.textContent === capitalizeAndFormat(fileName.replace('.md', ''))
         );
         if (activeFileItem) {
@@ -161,5 +168,21 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Parse query parameters
+    function getQueryParameter(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+
+    // Load markdown file from query parameter
+    async function loadMarkdownFromQuery() {
+        const filePath = getQueryParameter('file');
+        if (filePath) {
+            const [folder, fileName] = filePath.split('/').slice(-2);
+            await loadMarkdown(folder, fileName);
+        }
+    }
+
     createSidebar();
+    loadMarkdownFromQuery(); // Load the markdown file if specified in the query
 });
