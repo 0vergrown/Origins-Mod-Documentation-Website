@@ -3,6 +3,19 @@ const searchInput = document.getElementById("searchInput");
 const recentSearches = document.getElementById("recentSearches");
 
 let markdownFiles = []; // Array to store file paths and metadata
+let recentSearchesArray = []; // Array to store recent searches (max 5)
+
+// Load recent searches from localStorage
+function loadRecentSearches() {
+    const storedSearches = JSON.parse(localStorage.getItem("recentSearches")) || [];
+    recentSearchesArray = storedSearches;
+    displayRecentSearches();
+}
+
+// Save recent searches to localStorage
+function saveRecentSearches() {
+    localStorage.setItem("recentSearches", JSON.stringify(recentSearchesArray));
+}
 
 // Open the search overlay
 function openSearchOverlay() {
@@ -39,7 +52,6 @@ async function loadFileStructure() {
                     const filePath = `docs/${type}/${folder}/${file}`;
 
                     try {
-                        // Fetch the markdown file to extract metadata
                         const fileResponse = await fetch(filePath);
                         if (!fileResponse.ok) {
                             console.warn(`Failed to fetch file: ${filePath}`);
@@ -49,12 +61,11 @@ async function loadFileStructure() {
                         const content = await fileResponse.text();
                         const metadata = extractMetadata(content);
 
-                        // Use the extracted title or fall back to file name
                         markdownFiles.push({
                             filePath,
                             metadata: {
                                 title: metadata?.title || file.replace(".md", "").replace(/_/g, " "),
-                                ...metadata, // Include other metadata if needed
+                                ...metadata,
                             },
                             viewer,
                         });
@@ -105,7 +116,9 @@ function displaySearchResults(results) {
                       `<div>
                           <a href="${result.viewer}?file=${encodeURIComponent(
                           result.filePath
-                      )}" class="search-result">
+                      )}" class="search-result" onclick="addToRecentSearches('${result.metadata.title}', '${result.viewer}?file=${encodeURIComponent(
+                          result.filePath
+                      )}')">
                               ${result.metadata.title}
                           </a>
                       </div>`
@@ -114,8 +127,45 @@ function displaySearchResults(results) {
         : "No results found.";
 }
 
+// Add a search result to recent searches
+function addToRecentSearches(title, link) {
+    const existingIndex = recentSearchesArray.findIndex((item) => item.link === link);
+    if (existingIndex > -1) {
+        // Remove the existing item if it already exists
+        recentSearchesArray.splice(existingIndex, 1);
+    }
+
+    // Add the new search result to the beginning
+    recentSearchesArray.unshift({ title, link });
+
+    // Limit the array to 5 items
+    if (recentSearchesArray.length > 5) {
+        recentSearchesArray.pop();
+    }
+
+    saveRecentSearches();
+    displayRecentSearches();
+}
+
+// Display the recent searches
+function displayRecentSearches() {
+    if (recentSearchesArray.length === 0) {
+        recentSearches.innerHTML = "NO RECENT SEARCHES";
+    } else {
+        recentSearches.innerHTML = recentSearchesArray
+            .map(
+                (search) =>
+                    `<div>
+                        <a href="${search.link}" class="recent-search">${search.title}</a>
+                    </div>`
+            )
+            .join("");
+    }
+}
+
 // Initialize search overlay functionality
 document.addEventListener("DOMContentLoaded", async () => {
+    loadRecentSearches();
     await loadFileStructure();
 
     // Handle search input changes

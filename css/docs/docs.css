@@ -78,3 +78,26 @@
 .doc-option:hover .external-link {
     transform: translateX(6px);
 }
+
+body.dark-mode .doc-option {
+    background: #333; /* Dark background for doc-option in dark mode */
+    color: white; /* Text color for dark mode */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Adjust shadow for dark mode */
+}
+
+body.dark-mode .doc-option:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7); /* Slightly stronger hover shadow */
+}
+
+body.dark-mode .doc-option h2 {
+    color: white; /* Heading color in dark mode */
+}
+
+body.dark-mode .doc-option p {
+    color: #ccc; /* Lighter text for paragraphs in dark mode */
+}
+
+body.dark-mode .arrow-link,
+body.dark-mode .external-link {
+    color: #ff8400; /* Bright color for links in dark mode */
+}

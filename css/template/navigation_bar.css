@@ -286,3 +286,34 @@ body.dark-mode .icon-button {
     justify-content: center;
     box-sizing: border-box;
 }
+
+/* Recent search link styles (light mode) */
+.recent-search {
+    color: #0056b3; /* Clear blue for light mode */
+    text-decoration: none; /* Remove underline */
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.recent-search:visited {
+    color: #6f42c1; /* Vibrant purple for visited links */
+}
+
+.recent-search:hover {
+    color: #003580; /* Darker blue on hover */
+    text-decoration: underline; /* Add underline on hover for emphasis */
+}
+
+/* Dark mode styles for recent searches */
+body.dark-mode .recent-search {
+    color: #66ccff; /* Bright cyan for dark mode */
+}
+
+body.dark-mode .recent-search:visited {
+    color: #d4a3ff; /* Soft lavender for visited links in dark mode */
+}
+
+body.dark-mode .recent-search:hover {
+    color: #33aaff; /* Slightly darker cyan on hover */
+    text-decoration: underline; /* Add underline on hover for emphasis */
+}
