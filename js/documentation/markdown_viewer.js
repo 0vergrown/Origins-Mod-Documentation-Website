@@ -1,11 +1,11 @@
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", async function() {
     const sidebarMenu = document.getElementById("sidebar-menu");
     const markdownContent = document.getElementById("markdownContent");
     const headersMenu = document.getElementById("headers-menu");
 
-    const viewerType = window.location.pathname.includes("data_pack")
-        ? "data_pack"
-        : "addon";
+    const viewerType = window.location.pathname.includes("data_pack") ?
+        "data_pack" :
+        "addon";
 
     function capitalizeAndFormat(str) {
         return str
@@ -43,30 +43,30 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
 
-async function loadMarkdown(folder, fileName) {
-    const filePath = `https://raw.githubusercontent.com/0vergrown/Origins-Mod-Documentation-Website/main/docs/${viewerType}/${folder}/${fileName}`;
+    async function loadMarkdown(folder, fileName) {
+        const filePath = `docs/${viewerType}/${folder}/${fileName}`;
 
-    try {
-        const response = await fetch(filePath);
-        if (!response.ok) throw new Error(`Failed to fetch file: ${filePath}`);
+        try {
+            const response = await fetch(filePath);
+            if (!response.ok) throw new Error(`Failed to fetch file: ${filePath}`);
 
-        let markdownText = await response.text();
+            let markdownText = await response.text();
 
-        // Remove metadata block if present
-        const metadataRegex = /^---[\s\S]*?---\s*/;
-        markdownText = markdownText.replace(metadataRegex, "");
+            // Remove metadata block if present
+            const metadataRegex = /^---[\s\S]*?---\s*/;
+            markdownText = markdownText.replace(metadataRegex, "");
 
-        // Use marked.js to parse markdown
-        markdownContent.innerHTML = marked.parse(markdownText);
+            // Use marked.js to parse markdown
+            markdownContent.innerHTML = marked.parse(markdownText);
 
-        addCopyButtonsToCodeBlocks();
-        populateHeaders(markdownText);
-        highlightActiveFile(folder, fileName);
-    } catch (error) {
-        console.error("Error loading markdown:", error);
-        markdownContent.innerHTML = `<p>Error loading: ${error.message}. Please check the console for details.</p>`;
+            addCopyButtonsToCodeBlocks();
+            populateHeaders(markdownText);
+            highlightActiveFile(folder, fileName);
+        } catch (error) {
+            console.error("Error loading markdown:", error);
+            markdownContent.innerHTML = `<p>Error loading: ${error.message}. Please check the console for details.</p>`;
+        }
     }
-}
 
     function addCopyButtonsToCodeBlocks() {
         const codeBlocks = markdownContent.querySelectorAll("pre");
