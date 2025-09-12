@@ -66,10 +66,10 @@ Instead of adding these to a resource pack though, which would be required on th
 }
 ```
 
-That concludes this tutorial on how to define custom origins using existing powers. If everything works, the next step would be to learn how to [add a custom power](/docs/datapack_guides/define_power.md)
+That concludes this tutorial on how to define custom origins using existing powers. If everything works, the next step would be to learn how to [add a custom power](/assets/docs/datapack_guides/define_power.md)
 
 ### Related pages
 
-* [Origin JSON](/docs/json/origin.md)
+* [Origin JSON](/assets/docs/json/origin.md)
 * [Upgrade JSON](../../json/upgrade.md)
-* [Layer JSON](/docs/json/origin_layer.md)
+* [Layer JSON](/assets/docs/json/origin_layer.md)

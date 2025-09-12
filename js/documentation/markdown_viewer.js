@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
 
     async function loadMarkdown(folder, fileName) {
-        const filePath = `docs/${viewerType}/${folder}/${fileName}`;
+        const filePath = `assets/docs/${viewerType}/${folder}/${fileName}`;
 
         try {
             const response = await fetch(filePath);
