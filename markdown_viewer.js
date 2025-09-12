@@ -44,9 +44,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     async function loadMarkdown(folder, fileName) {
-        // Use absolute path for GitHub Pages
-        const filePath = `Origins-Mod-Documentation-Website/docs/${viewerType}/${folder}/${fileName}`;
-
+        const filePath = `docs/${viewerType}/${folder}/${fileName}`;
         try {
             const response = await fetch(filePath);
             if (!response.ok) throw new Error(`Failed to fetch file: ${filePath}`);
