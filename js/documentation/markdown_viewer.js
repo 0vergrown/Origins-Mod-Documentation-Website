@@ -5,13 +5,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const viewerType = window.location.pathname.includes("data_pack")
         ? "data_pack"
-        : "addon"; // Determine the type of viewer based on the URL
+        : "addon";
 
     function capitalizeAndFormat(str) {
         return str
-            .replace(/^\d+_/, "") // Remove leading numbers and underscore
-            .replace(/_/g, " ") // Replace underscores with spaces
-            .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize first letter of each word
+            .replace(/^\d+_/, "")
+            .replace(/_/g, " ")
+            .replace(/\b\w/g, (char) => char.toUpperCase());
     }
 
     async function loadSidebar() {
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             const response = await fetch("assets/data/documentation_file_structure.json");
             if (!response.ok) throw new Error("Failed to fetch file structure");
 
-            const fileStructure = (await response.json())[viewerType]; // Load only relevant section
+            const fileStructure = (await response.json())[viewerType];
 
             for (const folder in fileStructure) {
                 const folderItem = document.createElement("li");
@@ -51,11 +51,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             let markdownText = await response.text();
 
-            // Remove metadata
+            // Remove metadata block if present
             const metadataRegex = /^---[\s\S]*?---\s*/;
             markdownText = markdownText.replace(metadataRegex, "");
 
+            // Use marked.js to parse markdown
             markdownContent.innerHTML = marked.parse(markdownText);
+
             addCopyButtonsToCodeBlocks();
             populateHeaders(markdownText);
             highlightActiveFile(folder, fileName);
@@ -70,19 +72,15 @@ document.addEventListener("DOMContentLoaded", async function () {
         codeBlocks.forEach((block) => {
             const copyButton = document.createElement("button");
             copyButton.className = "copy-button";
-            copyButton.innerHTML =
-                '<img src="https://img.icons8.com/material-outlined/24/000000/copy.png" alt="Copy Icon">';
+            copyButton.innerHTML = '<img src="https://img.icons8.com/material-outlined/24/000000/copy.png" alt="Copy Icon">';
             block.appendChild(copyButton);
 
             copyButton.onclick = () => {
                 const code = block.querySelector("code").innerText;
                 navigator.clipboard.writeText(code).then(() => {
-                    copyButton.innerHTML =
-                        '<img src="https://img.icons8.com/material-outlined/24/000000/checkmark.png" alt="Copied Icon">';
+                    copyButton.innerHTML = '<img src="https://img.icons8.com/material-outlined/24/000000/checkmark.png" alt="Copied Icon">';
                     setTimeout(
-                        () =>
-                            (copyButton.innerHTML =
-                                '<img src="https://img.icons8.com/material-outlined/24/000000/copy.png" alt="Copy Icon">'),
+                        () => copyButton.innerHTML = '<img src="https://img.icons8.com/material-outlined/24/000000/copy.png" alt="Copy Icon">',
                         2000
                     );
                 });
@@ -117,13 +115,15 @@ document.addEventListener("DOMContentLoaded", async function () {
     async function loadMarkdownFromQuery() {
         const filePath = new URLSearchParams(window.location.search).get("file");
         if (filePath) {
-            const [folder, fileName] = filePath.split("/").slice(-2);
+            const pathParts = filePath.split("/");
+            const folder = pathParts[pathParts.length - 2];
+            const fileName = pathParts[pathParts.length - 1];
             await loadMarkdown(folder, fileName);
         } else {
             markdownContent.innerHTML = "<p>Please select a file from the sidebar.</p>";
         }
     }
 
-    await loadSidebar(); // Dynamically load sidebar
-    await loadMarkdownFromQuery(); // Load file if specified in query
+    await loadSidebar();
+    await loadMarkdownFromQuery();
 });
